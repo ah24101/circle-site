@@ -3,12 +3,13 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif; /* Interフォントを適用 */
-    background-color: #d7ffe5; /* 薄いグレーの背景色 */
-    background-image: url('https://placehold.co/1920x1080/E0F2F7/333333?text=Civil+Circle'); /* 背景画像 */
+    background-color: #D4EDDA; /* 薄い緑色の背景色 */
+    /* --- 修正点1: 背景画像のURLを変更 (文字色を薄いグレーに) --- */
+    background-image: url('https://placehold.co/1920x1080/D4EDDA/BBBBBB?text=Civil+Circle'); /* 文字色を薄いグレーに (#BBBBBB)、画像の背景は薄い緑に (#D4EDDA) */
     background-size: cover; /* 画面全体に画像を拡大・縮小 */
     background-position: center; /* 画像を中央に配置 */
     background-attachment: fixed; /* スクロールしても背景を固定 */
-    color: #5e5e5e;
+    color: #333;
     min-height: 100vh; /* 画面の高さ全体をカバー */
     display: flex;
     flex-direction: column;
@@ -29,13 +30,13 @@ body {
     height: 50px;
     margin-right: 15px;
     margin-left: 40px;
-    border-radius: 4px; /* ロゴにも角丸 */
+    border-radius: 8px; /* ロゴにも角丸 */
 }
 
 .title {
     font-size: 28px; /* 少し大きく */
     font-weight: 600; /* 太字 */
-    color: #46714b; /* 青色 */
+    color: #007bff; /* 青色 */
     text-align: center;
     margin: 0 auto;
 }
@@ -209,11 +210,20 @@ footer {
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
+    /* スマホでの背景画像表示を調整 */
+    body {
+        background-size: contain; /* 画像全体を収めるように縮小 */
+        background-repeat: no-repeat; /* 繰り返しなし */
+        background-position: center top; /* 上中央に配置 */
+    }
+
     .mypage-container {
         flex-direction: column; /* 縦並びにする */
         align-items: center; /* 中央揃え */
         padding: 1rem;
         margin: 1rem auto;
+        /* スマホで背景が目立ちすぎないように、コンテンツ領域の背景を少し濃くする */
+        background-color: rgba(255, 255, 255, 0.98); /* ほぼ不透明に */
     }
 
     .left-image {
