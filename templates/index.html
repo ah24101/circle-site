@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>土木サークル共有サイト</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <!-- ハンバーガーメニュー -->
+  <div class="hamburger">&#9776;</div>
+  <div class="menu" id="menu">
+    <a href="/mypage">マイページ</a><br>
+    <a href="/settings">設定</a><br>
+    <a href="/admin">管理者ページ</a><br>
+    <a href="/logout">ログアウト</a><br>
+  </div>
+
+  <!-- タイトル＋画像 横並び -->
+  <div class="header">
+    <img src="{{ url_for('static', filename='circle-thumb.jpg') }}" alt="土木サークル" class="logo">
+    <h1 class="title">土木サークル</h1>
+  </div>
+
+  <!-- コンテンツ -->
+  <div class="container">
+    <div class="box">
+      <h2>お知らせ</h2>
+      <p>ページを更新しました！</p>
+    </div>
+    <div class="box">
+      <h2>開催予定</h2>
+      <p><a href="#">研究室ツアー（クリックで詳細へ）</a></p>
+    </div>
+    <div class="box">
+      <h2>サークルとは</h2>
+      <p><a href="https://probable-lyre-4d0.notion.site/HP-1c18c87e44d2807aac28f7bc5cdae897?pvs=143">サークル紹介ページ（Notion）</a></p>
+    </div>
+  </div>
+
+  <!-- ハンバーガーJS -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const menu = document.getElementById('menu');
+
+    hamburger.addEventListener('click', () => {
+      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    });
+  </script>
+</body>
+</html>

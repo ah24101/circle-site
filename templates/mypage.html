@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイページ</title>
+    <!-- CSSファイルのリンク -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Fonts (Inter) のリンク -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Interフォントを全体に適用 */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー部分 -->
+    <header>
+        <h1>マイページ</h1>
+        <!-- ハンバーガーメニューなど、必要に応じてここにナビゲーション要素を追加 -->
+        <nav class="hamburger-menu">
+            <!-- メニュー項目 -->
+        </nav>
+    </header>
+
+    <!-- メインコンテンツコンテナ -->
+    <main class="mypage-container">
+        <!-- 左端に表示する画像 -->
+        <!-- ここにあなたのサークルロゴや好きな画像のURLを挿入してください -->
+        <img src="{{ url_for('static', filename='インスタアイコン.jpg') }}" alt="サークルロゴ" class="left-image">
+
+    
+
+        <!-- コンテンツを囲むラッパー -->
+        <div class="content-wrapper">
+            <!-- ユーザーが提供したH1は、メインH1と重複するため削除し、H2をメインタイトルとして活用 -->
+            <h2>ようこそ、{{ student_id }} さん！</h2>
+
+            <h3>あなたの情報</h3>
+            <ul>
+                <li>学籍番号: {{ student_id }}</li>
+                <li>所属: 土木サークル</li>
+                <li>ステータス: 有効メンバー</li>
+            </ul>
+
+            <h3>あなたの参加履歴</h3>
+            {% if error %}
+                <p class="error-message">エラー: {{ error }}</p> {# CSSクラスを適用 #}
+            {% endif %}
+
+            {% if event_history %}
+                <table class="history-table"> {# CSSクラスを適用 #}
+                    <thead>
+                        <tr>
+                            <th>学籍番号</th>
+                            <th>出欠</th>
+                            <th>タイムスタンプ</th>
+                            <th>元シート名</th>
+                            <!-- 必要に応じて他のヘッダーを追加 -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for event in event_history %}
+                        <tr>
+                            <td>{{ event['学籍番号'] }}</td>
+                            <td>{{ event['出欠'] }}</td>
+                            <td>{{ event['タイムスタンプ'] }}</td>
+                            <td>{{ event['元シート名'] }}</td>
+                            <!-- 必要に応じて他のデータも表示 -->
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>まだ参加履歴がありません。</p>
+            {% endif %}
+
+            <!-- リンクはコンテンツラッパー内に配置 -->
+            <div class="links-section">
+                <a href="/">トップページへ戻る</a><br>
+                <a href="/logout">ログアウト</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター部分 -->
+    <footer>
+        <!-- フッターコンテンツ -->
+        <p>&copy; 2025 土木サークル</p>
+    </footer>
+</body>
+</html>
