@@ -14,24 +14,6 @@ body {
     flex-direction: column;
 }
 
-/* トップサムネイルのスタイル */
-.top-thumbnail-container {
-    width: 100%;
-    background-color: #f0f2f5; /* サムネイル背景色 */
-    padding: 10px 0;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.top-thumbnail {
-    max-width: 800px; /* サムネイルの最大幅 */
-    width: 90%; /* レスポンシブ対応 */
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-
 /* ヘッダー */
 .header {
     display: flex;
@@ -46,16 +28,34 @@ body {
     min-height: 60px; /* ヘッダーの最小高さを確保 */
 }
 
+/* ヘッダー中央のロゴとタイトルのグループ */
+.header-center-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* ロゴとタイトルの間のスペース */
+    /* ヘッダー内で中央に配置 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1; /* 他の要素より手前に */
+}
+
+/* ヘッダー内のロゴのスタイル */
+.header-logo {
+    height: 40px; /* ロゴの高さ */
+    width: auto; /* アスペクト比を維持 */
+    border-radius: 50%; /* 円形にする */
+    object-fit: cover; /* 画像がはみ出さないように調整 */
+    border: 2px solid #007bff; /* 枠線 */
+}
+
+
 .title {
     font-size: 28px;
     font-weight: 600;
     color: #007bff;
-    margin: 0;
-    position: absolute; /* ヘッダーの中央に配置 */
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 0; /* Flexアイテムとしてマージンをリセット */
     white-space: nowrap; /* タイトルが改行されないように */
-    z-index: 1; /* 他の要素より手前に */
 }
 
 /* ハンバーガーアイコン (モバイルでは表示、PCでは非表示) */
@@ -315,5 +315,10 @@ footer {
     /* モバイル時のヘッダー調整 */
     .header .title {
         font-size: 24px; /* モバイルではタイトルを少し小さく */
+    }
+
+    /* モバイル時のロゴ調整 */
+    .header-logo {
+        height: 30px; /* モバイルではロゴを少し小さく */
     }
 }

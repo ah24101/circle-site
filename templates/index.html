@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>トップページ</title>
-    <meta name="robots" content="noindex"> <!-- 検索エンジン除外タグ -->
-    <!-- CSSファイルのリンク -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <!-- Google Fonts (Inter) のリンク -->
+    <meta name="robots" content="noindex"> <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* Interフォントを全体に適用 */
@@ -17,18 +14,14 @@
     </style>
 </head>
 <body>
-    <!-- 修正点: サムネイルをヘッダーの直前に配置 -->
-    <div class="top-thumbnail-container">
-        <img src="{{ url_for('static', filename='circle-thumb.jpg') }}" alt="土木サークル" class="top-thumbnail">
-    </div>
-
-    <!-- ヘッダー部分 -->
     <header class="header">
-        <!-- ハンバーガーアイコン (モバイル用) -->
         <div class="hamburger" id="hamburger-icon">&#9776;</div>
-        <!-- タイトル -->
-        <h1 class="title">土木サークル</h1>
-        <!-- デスクトップ用ナビゲーション (スクリーンショットの右上のリンク) -->
+        
+        <div class="header-center-group">
+            <img src="{{ url_for('static', filename='circle-thumb.jpg') }}" alt="サークルロゴ" class="header-logo">
+            <h1 class="title">土木サークル</h1>
+        </div>
+
         <nav class="desktop-nav">
             <a href="/">トップページ</a>
             <a href="/mypage">マイページ</a>
@@ -36,12 +29,10 @@
         </nav>
     </header>
 
-    <!-- ハンバーガーメニューのコンテンツ (モバイル用) -->
     <nav class="menu" id="main-menu">
         <a href="/">トップページ</a>
         <a href="/mypage">マイページ</a>
         <a href="/logout">ログアウト</a>
-        <!-- 新規項目を追加 -->
         <a href="/settings">設定</a> {# 仮のリンク #}
         <a href="/admin">管理者ページ</a> {# 仮のリンク #}
         <div class="mode-toggle">
@@ -69,7 +60,6 @@
         <p>&copy; 2025 土木サークル</p>
     </footer>
 
-    <!-- JavaScriptファイルのリンク (</body>タグの直前が推奨) -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
