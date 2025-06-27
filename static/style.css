@@ -71,12 +71,13 @@ body {
     transform: none; /* 以前の絶対位置指定をリセット */
 }
 
-/* モバイル用スライドアウトメニュー (モバイルでは表示、PCでは非表示) */
+/* モバイル用スライドアウトメニュー (PCでは非表示) */
 .menu {
-    display: none; /* PCでは非表示 */
+    /* --- 修正点: display: none; を visibility: hidden; に変更し、初期位置を画面外に --- */
+    visibility: hidden; /* 初期状態では非表示 */
     position: fixed;
     top: 0;
-    left: -250px; /* 初期状態は画面外に配置 */
+    left: -250px; /* 画面外に配置 */
     width: 250px;
     height: 100%;
     background-color: #f0f0f0;
@@ -84,11 +85,13 @@ body {
     border-right: 1px solid #ddd;
     box-shadow: 2px 0 10px rgba(0,0,0,0.2);
     z-index: 999;
-    transition: left 0.3s ease-in-out;
+    transition: left 0.3s ease-in-out, visibility 0.3s ease-in-out; /* visibilityもトランジション対象に */
 }
 
 .menu.open {
+    /* --- 修正点: スライドイン時に visibility: visible; を追加 --- */
     left: 0; /* スライドイン */
+    visibility: visible; /* 表示 */
 }
 
 .menu a {
@@ -279,8 +282,8 @@ footer {
 
     /* モバイル用スライドアウトメニュー (スライド可能にするためblockにする) */
     .menu {
-        display: block;
-        left: -250px; /* 画面外から開始 */
+        /* --- 修正点: display: block; を削除し、visibility: visible; をopenクラスに任せる --- */
+        /* left: -250px; は既に基本スタイルで指定されている */
     }
 
     /* 背景画像をモバイル用に調整 */
