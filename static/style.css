@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif; /* Interフォントを適用 */
-    background-color: hsl(205, 87%, 94%); 
+    background-color: hsl(205, 100%, 96%); 
     /* --- 修正点1: 背景画像のURLを変更 (文字色を薄いグレーに) --- */
     background-image: url('https://placehold.co/1920x1080/D4EDDA/BBBBBB?text=Civil+Circle'); /* 文字色を薄いグレーに (#BBBBBB)、画像の背景は薄い緑に (#D4EDDA) */
     background-size: cover; /* 画面全体に画像を拡大・縮小 */
