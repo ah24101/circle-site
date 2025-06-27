@@ -1,13 +1,19 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory
 import requests
+import os
 
 app = Flask(__name__)
-app.secret_key = 'a8f7e5d4c3b2a1' # セッションを使うために必要な鍵（なんでもOK）
+app.secret_key = 'a8f7e5d4c3b2a1' 
 
 # 仮のユーザー情報：ここでログイン許可する人を指定
 users = {
     "ah24101@shibaura-it.ac.jp": "123456"
 }
+
+# robots.txt を提供するためのルート
+@app.route('/robots.txt')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -30,11 +36,10 @@ def mypage():
     email = session['user']
     student_id = email.split('@')[0] # @の前を抽出
 
-    # --- ここが重要：AS_WEB_APP_URL が正しいか再確認してください ---
-    AS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxMTrGHaEn4yzF1ZR3p207ce1kkvBnLzWvHx09w6Y-N3tyXCtODuwZb4cHMmXJta79zrw/exec" # ここにあなたのApps ScriptのウェブアプリURLを貼り付けてください
+    AS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxMTrGHaEn4yzF1ZR3p207ce1kkvBnLzWvHx09w6Y-N3tyXCtODuwZb4cHMmXJta79zrw/exec" 
 
-    event_history = [] # 参加履歴を格納するリストを初期化
-    error_message = None # エラーメッセージを格納する変数を初期化
+    event_history = [] 
+    error_message = None 
 
     try:
         response = requests.get(AS_WEB_APP_URL)
@@ -75,4 +80,5 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    port = int(os.environ.get('PORT', 5000)) 
+    app.run(debug=True, host='0.0.0.0', port=port)
