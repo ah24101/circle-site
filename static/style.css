@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif; /* Interフォントを適用 */
-    background-color: #D4EDDA; /* 薄い緑色の背景色 */
+    background-color: hsl(205, 87%, 94%); 
     /* --- 修正点1: 背景画像のURLを変更 (文字色を薄いグレーに) --- */
     background-image: url('https://placehold.co/1920x1080/D4EDDA/BBBBBB?text=Civil+Circle'); /* 文字色を薄いグレーに (#BBBBBB)、画像の背景は薄い緑に (#D4EDDA) */
     background-size: cover; /* 画面全体に画像を拡大・縮小 */
@@ -20,7 +20,7 @@ body {
     display: flex;
     align-items: center;
     padding: 10px;
-    background-color: #e3f2fd; /* 薄い青色の背景 */
+    background-color: hsl(205, 87%, 94%); /* 薄い青色の背景 */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 影を追加 */
     border-bottom-left-radius: 15px; /* 角丸 */
     border-bottom-right-radius: 15px; /* 角丸 */
