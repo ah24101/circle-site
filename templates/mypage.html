@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>マイページ</title>
+    <meta name="robots" content="noindex"> <!-- 検索エンジン除外タグ -->
     <!-- CSSファイルのリンク -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <!-- Google Fonts (Inter) のリンク -->
@@ -14,34 +15,31 @@
             font-family: 'Inter', sans-serif;
         }
     </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ページタイトル</title> <!-- 例: マイページ -->
-    <meta name="robots" content="noindex"> <!-- この行を追加 -->
-    <!-- その他のhead要素（CSSリンクなど） -->
-     
 </head>
 <body>
     <!-- ヘッダー部分 -->
-    <header>
-        <h1>マイページ</h1>
-        <!-- ハンバーガーメニューなど、必要に応じてここにナビゲーション要素を追加 -->
-        <nav class="hamburger-menu">
-            <!-- メニュー項目 -->
-        </nav>
+    <header class="header"> {# headerクラスを追加 #}
+        <!-- ハンバーガーアイコン -->
+        <div class="hamburger" id="hamburger-icon">&#9776;</div> {# アイコンとIDを追加 #}
+        <h1 class="title">マイページ</h1> {# titleクラスを追加 #}
+        <!-- 必要に応じて他のヘッダーコンテンツ -->
     </header>
+
+    <!-- ハンバーガーメニューのコンテンツ -->
+    <nav class="menu" id="main-menu"> {# menuクラスとIDを追加 #}
+        <a href="/">トップページ</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/logout">ログアウト</a>
+        <!-- 必要に応じて他のメニュー項目を追加 -->
+    </nav>
 
     <!-- メインコンテンツコンテナ -->
     <main class="mypage-container">
         <!-- 左端に表示する画像 -->
-        <!-- ここにあなたのサークルロゴや好きな画像のURLを挿入してください -->
-        <img src="{{ url_for('static', filename='インスタアイコン.jpg') }}" alt="サークルロゴ" class="left-image">
-
-    
+        <img src="{{ url_for('static', filename='circle-thumb.jpg') }}" alt="サークルロゴ" class="left-image">
 
         <!-- コンテンツを囲むラッパー -->
         <div class="content-wrapper">
-            <!-- ユーザーが提供したH1は、メインH1と重複するため削除し、H2をメインタイトルとして活用 -->
             <h2>ようこそ、{{ student_id }} さん！</h2>
 
             <h3>あなたの情報</h3>
@@ -53,11 +51,11 @@
 
             <h3>あなたの参加履歴</h3>
             {% if error %}
-                <p class="error-message">エラー: {{ error }}</p> {# CSSクラスを適用 #}
+                <p class="error-message">エラー: {{ error }}</p>
             {% endif %}
 
             {% if event_history %}
-                <table class="history-table"> {# CSSクラスを適用 #}
+                <table class="history-table">
                     <thead>
                         <tr>
                             <th>学籍番号</th>
@@ -96,5 +94,8 @@
         <!-- フッターコンテンツ -->
         <p>&copy; 2025 土木サークル</p>
     </footer>
+
+    <!-- JavaScriptファイルのリンク (</body>タグの直前が推奨) -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script> {# 新しいJSファイルをリンク #}
 </body>
 </html>
