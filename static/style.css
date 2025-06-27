@@ -3,8 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif; /* Interフォントを適用 */
-    background-color: hsl(205, 100%, 96%); 
-    /* --- 修正点1: 背景画像のURLを変更 (文字色を薄いグレーに) --- */
+    background-color: #D4EDDA; /* 薄い緑色の背景色 */
     background-image: url('https://placehold.co/1920x1080/D4EDDA/BBBBBB?text=Civil+Circle'); /* 文字色を薄いグレーに (#BBBBBB)、画像の背景は薄い緑に (#D4EDDA) */
     background-size: cover; /* 画面全体に画像を拡大・縮小 */
     background-position: center; /* 画像を中央に配置 */
@@ -15,62 +14,81 @@ body {
     flex-direction: column;
 }
 
+/* トップサムネイルのスタイル */
+.top-thumbnail-container {
+    width: 100%;
+    background-color: #f0f2f5; /* サムネイル背景色 */
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.top-thumbnail {
+    max-width: 800px; /* サムネイルの最大幅 */
+    width: 90%; /* レスポンシブ対応 */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
 /* ヘッダー */
 .header {
     display: flex;
     align-items: center;
-    padding: 10px;
-    background-color: hsl(205, 87%, 94%); /* 薄い青色の背景 */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 影を追加 */
-    border-bottom-left-radius: 15px; /* 角丸 */
-    border-bottom-right-radius: 15px; /* 角丸 */
-}
-
-.logo {
-    height: 50px;
-    margin-right: 15px;
-    margin-left: 40px;
-    border-radius: 8px; /* ロゴにも角丸 */
+    justify-content: space-between; /* 要素を両端に配置 */
+    padding: 10px 20px;
+    background-color: #e3f2fd; /* 薄い青色の背景 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    position: relative; /* ハンバーガーアイコンの絶対位置指定のため */
+    min-height: 60px; /* ヘッダーの最小高さを確保 */
 }
 
 .title {
-    font-size: 28px; /* 少し大きく */
-    font-weight: 600; /* 太字 */
-    color: #0e4f30; /* 青色 */
-    text-align: center;
-    margin: 0 auto;
+    font-size: 28px;
+    font-weight: 600;
+    color: #007bff;
+    margin: 0;
+    position: absolute; /* ヘッダーの中央に配置 */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap; /* タイトルが改行されないように */
+    z-index: 1; /* 他の要素より手前に */
 }
 
-/* 三本線ハンバーガー */
+/* ハンバーガーアイコン (モバイルでは表示、PCでは非表示) */
 .hamburger {
-    position: absolute; /* ヘッダー内の位置を基準に */
-    top: 20px; /* ヘッダーの高さに合わせて調整 */
-    left: 20px;
+    display: none; /* PCでは非表示 */
     font-size: 30px;
     cursor: pointer;
-    color: #007bff; /* アイコンの色 */
-    z-index: 1000; /* 他の要素より手前に表示 */
+    color: #007bff;
+    z-index: 1000; /* 最前面に */
+    position: relative; /* ヘッダーの左端に配置 */
+    left: 0;
+    top: 0;
+    transform: none; /* 以前の絶対位置指定をリセット */
 }
 
-/* メニュー */
+/* モバイル用スライドアウトメニュー (モバイルでは表示、PCでは非表示) */
 .menu {
-    display: none; /* 初期状態では非表示 */
-    position: fixed; /* 画面に固定 */
-    top: 0; /* 画面上部から */
-    left: 0;
-    width: 250px; /* メニューの幅 */
-    height: 100%; /* 画面の高さ全体 */
-    background-color: #f0f0f0; /* 背景色 */
-    padding: 60px 20px 20px; /* 上部にスペースを確保 */
-    border-right: 1px solid #ddd; /* 右側に境界線 */
-    box-shadow: 2px 0 10px rgba(0,0,0,0.2); /* 影 */
-    z-index: 999; /* ハンバーガーアイコンより奥 */
-    transition: transform 0.3s ease-in-out; /* スライドアニメーション */
-    transform: translateX(-100%); /* 初期状態は画面外 */
+    display: none; /* PCでは非表示 */
+    position: fixed;
+    top: 0;
+    left: -250px; /* 初期状態は画面外に配置 */
+    width: 250px;
+    height: 100%;
+    background-color: #f0f0f0;
+    padding: 60px 20px 20px;
+    border-right: 1px solid #ddd;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    z-index: 999;
+    transition: left 0.3s ease-in-out;
 }
 
 .menu.open {
-    transform: translateX(0); /* メニュー表示時は画面内へ */
+    left: 0; /* スライドイン */
 }
 
 .menu a {
@@ -79,67 +97,103 @@ body {
     color: #333;
     padding: 10px 0;
     margin: 5px 0;
-    border-bottom: 1px solid #eee; /* メニュー項目の区切り線 */
+    border-bottom: 1px solid #eee;
     transition: background-color 0.2s ease;
 }
 
 .menu a:hover {
-    background-color: #e3f2fd; /* ホバー時の背景色 */
-    border-radius: 5px; /* ホバー時に角丸 */
+    background-color: #e3f2fd;
+    border-radius: 5px;
+}
+
+.menu .mode-toggle {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu .mode-toggle button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* デスクトップ用ナビゲーション (PCでは表示、モバイルでは非表示) */
+.desktop-nav {
+    display: flex; /* PCでは表示 */
+    margin-left: auto; /* 右端に寄せる */
+    gap: 20px;
+    align-items: center;
+}
+
+.desktop-nav a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+.desktop-nav a:hover {
+    background-color: rgba(0, 123, 255, 0.1);
 }
 
 /* コンテンツ3列 */
 .container {
     display: flex;
-    flex-wrap: wrap; /* 画面幅が狭い場合に折り返す */
+    flex-wrap: wrap;
     justify-content: space-around;
-    margin: 20px auto; /* 中央寄せ */
-    max-width: 1200px; /* 最大幅を設定 */
-    gap: 20px; /* ボックス間の隙間 */
+    margin: 20px auto;
+    max-width: 1200px;
+    gap: 20px;
 }
 
 .box {
-    background-color: rgba(255, 255, 255, 0.9); /* 半透明の白 */
-    padding: 20px; /* パディングを増やす */
-    border-radius: 15px; /* 角丸を大きく */
-    width: 30%; /* 3列 */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 影を強調 */
-    flex-grow: 1; /* スペースに応じて拡大 */
-    min-width: 280px; /* 最小幅を設定してスマホで崩れないように */
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    width: 30%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    flex-grow: 1;
+    min-width: 280px;
 }
 
-/* --- マイページ固有のスタイル (以前のコードから継続) --- */
-
-/* マイページコンテナのスタイル */
+/* マイページ固有のスタイル */
 .mypage-container {
-    display: flex; /* Flexboxを使って画像を横に並べる */
-    align-items: flex-start; /* 上揃え */
+    display: flex;
+    align-items: flex-start;
     padding: 2rem;
-    gap: 2rem; /* 画像とコンテンツの間隔 */
-    flex-grow: 1; /* 残りのスペースを埋める */
-    max-width: 1200px; /* 最大幅を設定 */
-    margin: 2rem auto; /* 中央寄せ */
-    background-color: rgba(255, 255, 255, 0.95); /* 半透明の白 */
-    border-radius: 20px; /* 全体の角丸 */
+    gap: 2rem;
+    flex-grow: 1;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px); /* 背景を少しぼかす */
+    backdrop-filter: blur(5px);
 }
 
-/* 左端に表示する画像のスタイル */
 .left-image {
-    width: 150px; /* 画像の幅 */
-    height: 150px; /* 画像の高さ */
-    object-fit: cover; /* 画像がはみ出さないように調整 */
-    border-radius: 50%; /* 円形にする */
-    border: 4px solid #007bff; /* 青い枠線 */
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #007bff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    flex-shrink: 0; /* 縮小しない */
-    margin-top: 20px; /* 上からのマージン */
+    flex-shrink: 0;
+    margin-top: 20px;
 }
 
-/* コンテンツラッパーのスタイル */
 .content-wrapper {
-    flex-grow: 1; /* 残りのスペースを埋める */
+    flex-grow: 1;
     padding: 1rem;
 }
 
@@ -156,14 +210,13 @@ h3 {
     margin-bottom: 1rem;
 }
 
-/* テーブルのスタイル */
 .history-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px; /* テーブル全体の角丸 */
-    overflow: hidden; /* 角丸を適用するために必要 */
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .history-table th,
@@ -180,16 +233,16 @@ h3 {
 }
 
 .history-table tr:nth-child(even) {
-    background-color: #f8f8f8; /* 偶数行の背景色 */
+    background-color: #f8f8f8;
 }
 
 .history-table tr:hover {
-    background-color: #e9f5ff; /* ホバー時の背景色 */
+    background-color: #e9f5ff;
 }
 
 .error-message {
-    color: #dc3545; /* 赤色 */
-    background-color: #f8d7da; /* 薄い赤色の背景 */
+    color: #dc3545;
+    background-color: #f8d7da;
     border: 1px solid #f5c6cb;
     border-radius: 8px;
     padding: 10px 15px;
@@ -202,41 +255,65 @@ footer {
     padding: 1rem 2rem;
     text-align: center;
     color: #555;
-    margin-top: auto; /* フッターを下に固定 */
-    border-top-left-radius: 15px; /* 角丸 */
-    border-top-right-radius: 15px; /* 角丸 */
+    margin-top: auto;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
-    /* スマホでの背景画像表示を調整 */
+    /* モバイルではハンバーガーアイコンを表示 */
+    .hamburger {
+        display: block;
+        position: relative; /* ヘッダーの左端に配置 */
+        left: 0;
+        top: 0;
+        transform: none;
+    }
+
+    /* モバイルではデスクトップナビゲーションを非表示 */
+    .desktop-nav {
+        display: none;
+    }
+
+    /* モバイル用スライドアウトメニュー (スライド可能にするためblockにする) */
+    .menu {
+        display: block;
+        left: -250px; /* 画面外から開始 */
+    }
+
+    /* 背景画像をモバイル用に調整 */
     body {
-        background-size: contain; /* 画像全体を収めるように縮小 */
-        background-repeat: no-repeat; /* 繰り返しなし */
-        background-position: center top; /* 上中央に配置 */
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center top;
     }
 
     .mypage-container {
-        flex-direction: column; /* 縦並びにする */
-        align-items: center; /* 中央揃え */
+        flex-direction: column;
+        align-items: center;
         padding: 1rem;
         margin: 1rem auto;
-        /* スマホで背景が目立ちすぎないように、コンテンツ領域の背景を少し濃くする */
-        background-color: rgba(255, 255, 255, 0.98); /* ほぼ不透明に */
+        background-color: rgba(255, 255, 255, 0.98);
     }
 
     .left-image {
-        margin-bottom: 1rem; /* 下にマージンを追加 */
-        margin-top: 0; /* 上のマージンをリセット */
+        margin-bottom: 1rem;
+        margin-top: 0;
     }
 
     header, footer {
         padding: 1rem;
-        border-radius: 0; /* スマホでは角丸をなくす */
+        border-radius: 0;
     }
 
     .box {
-        width: 90%; /* スマホでは1列にする */
+        width: 90%;
+    }
+
+    /* モバイル時のヘッダー調整 */
+    .header .title {
+        font-size: 24px; /* モバイルではタイトルを少し小さく */
     }
 }
