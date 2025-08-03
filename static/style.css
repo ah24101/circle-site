@@ -3,8 +3,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif; /* Interフォントを適用 */
-    background-color: #D4EDDA; /* 薄い緑色の背景色 */
-    background-image: url('https://placehold.co/1920x1080/D4EDDA/BBBBBB?text=Civil+Circle'); /* 文字色を薄いグレーに (#BBBBBB)、画像の背景は薄い緑に (#D4EDDA) */
+    background-color: #eaeaea; 
+    background-image: url('https://placehold.co/1920x1080/F0F0F0/808080?text=Civil+Circle'); /* 文字色を薄いグレーに (#BBBBBB)、画像の背景は薄い緑に (#D4EDDA) */
     background-size: cover; /* 画面全体に画像を拡大・縮小 */
     background-position: center; /* 画像を中央に配置 */
     background-attachment: fixed; /* スクロールしても背景を固定 */
@@ -281,10 +281,7 @@ footer {
     }
 
     /* モバイル用スライドアウトメニュー (スライド可能にするためblockにする) */
-    .menu {
-        /* --- 修正点: display: block; を削除し、visibility: visible; をopenクラスに任せる --- */
-        /* left: -250px; は既に基本スタイルで指定されている */
-    }
+    
 
     /* 背景画像をモバイル用に調整 */
     body {
@@ -324,4 +321,72 @@ footer {
     .header-logo {
         height: 30px; /* モバイルではロゴを少し小さく */
     }
+}
+
+/* --- アンケート履歴・イベント詳細ページ専用のカードスタイル --- */
+.survey-record {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.survey-record h4 {
+    color: #007bff;
+    font-size: 20px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.survey-record .record-item {
+    margin-bottom: 12px;
+}
+
+.survey-record .record-item strong {
+    color: #333;
+    display: inline-block;
+    min-width: 150px;
+}
+
+.survey-record .record-item span {
+    color: #555;
+}
+
+/* モバイル対応：カード幅を調整 */
+@media (max-width: 768px) {
+    .survey-record {
+        padding: 15px;
+    }
+
+    .survey-record .record-item strong {
+        min-width: 120px;
+    }
+}
+.event-detail-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.event-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.event-card h3 {
+    margin-top: 0;
+    color: #007bff;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
 }

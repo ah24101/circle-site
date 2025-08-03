@@ -71,7 +71,13 @@
                             <td>{{ event['学籍番号'] }}</td>
                             <td>{{ event['出欠'] }}</td>
                             <td>{{ event['タイムスタンプ'] }}</td>
-                            <td>{{ event['元シート名'] }}</td>
+                            <td>
+  <a href="{{ url_for('event_detail', event_name=event['元シート名']) }}">
+    {{ event['元シート名'] }}
+  </a>
+</td>
+
+
                             <!-- 必要に応じて他のデータも表示 -->
                         </tr>
                         {% endfor %}
@@ -80,6 +86,10 @@
             {% else %}
                 <p>まだ参加履歴がありません。</p>
             {% endif %}
+            
+        <h3>アンケート履歴は<a href="{{ url_for('survey_history') }}">こちら</a></h3>
+
+
 
             <!-- リンクはコンテンツラッパー内に配置 -->
             <div class="links-section">

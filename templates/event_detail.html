@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ event_name }} の詳細</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<h2>{{ event_name }} の詳細</h2>
+
+<div class="event-detail-container">
+  {% for record in records %}
+    <div class="event-card">
+      <h3>{{ record["元シート名"] }}</h3>
+      <p><strong>参加日時：</strong>{{ record["参加日時"] }}</p>
+      <p><strong>イベントの要約：</strong>{{ record["イベントの要約"] }}</p>
+      <p><strong>参加してみての感想：</strong>{{ record["参加してみての感想"] }}</p>
+      <p><strong>質問できなかったこと：</strong>{{ record["質問できなかったこと"] }}</p>
+      <p><strong>今後のイベントに求めること：</strong>{{ record["今後のイベントに求めること"] }}</p>
+    </div>
+  {% endfor %}
+</div>
+
+<a href="{{ url_for('mypage') }}">マイページに戻る</a>
+
+</body>
+</html>
