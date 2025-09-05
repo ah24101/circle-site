@@ -61,7 +61,7 @@
                             <th>学籍番号</th>
                             <th>出欠</th>
                             <th>タイムスタンプ</th>
-                            <th>元シート名</th>
+                            <th>イベント名</th>
                             <!-- 必要に応じて他のヘッダーを追加 -->
                         </tr>
                     </thead>
@@ -72,8 +72,8 @@
                             <td>{{ event['出欠'] }}</td>
                             <td>{{ event['タイムスタンプ'] }}</td>
                             <td>
-  <a href="{{ url_for('event_detail', event_name=event['元シート名']) }}">
-    {{ event['元シート名'] }}
+  <a href="{{ url_for('event_detail', event_name=event['イベント名']) }}">
+    {{ event['イベント名'] }}
   </a>
 </td>
 

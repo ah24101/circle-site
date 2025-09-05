@@ -9,12 +9,12 @@
 {% if survey_records %}
     {% for record in survey_records %}
         <div class="survey-record" style="margin-bottom: 30px; padding: 15px; background: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-            <h3>{{ record['元シート名'] or '未設定' }}</h3>
+            <h3>{{ record['イベント名'] or '未設定' }}</h3>
             <p><strong>参加日時:</strong> {{ record['参加日時'] or '不明' }}</p>
             <p><strong>イベントの要約:</strong> {{ record['イベントの要約'] or '未設定' }}</p>
-            <p><strong>参加してみての感想:</strong> {{ record['参加してみての感想'] or '未記入' }}</p>
             <p><strong>質問できなかったこと:</strong> {{ record['質問できなかったこと'] or '未記入' }}</p>
-            <p><strong>今後のイベントに求めること:</strong> {{ record['今後のイベントに求めること'] or '未記入' }}</p>
+            <p><strong>今回学べたこと、印象に残ったこと:</strong> {{ record['今回学べたこと、印象に残ったこと'] or '未記入' }}</p>
+            <p><strong>今後期待すること、改善してほしいこと:</strong> {{ record['今後期待すること、改善してほしいこと'] or '未記入' }}</p>
         </div>
     {% endfor %}
 {% else %}

@@ -12,12 +12,12 @@
 <div class="event-detail-container">
   {% for record in records %}
     <div class="event-card">
-      <h3>{{ record["元シート名"] }}</h3>
+      <h3>{{ record["イベント名"] }}</h3>
       <p><strong>参加日時：</strong>{{ record["参加日時"] }}</p>
       <p><strong>イベントの要約：</strong>{{ record["イベントの要約"] }}</p>
-      <p><strong>参加してみての感想：</strong>{{ record["参加してみての感想"] }}</p>
       <p><strong>質問できなかったこと：</strong>{{ record["質問できなかったこと"] }}</p>
-      <p><strong>今後のイベントに求めること：</strong>{{ record["今後のイベントに求めること"] }}</p>
+      <p><strong>今回学べたこと、印象に残ったこと：</strong>{{ record["今回学べたこと、印象に残ったこと"] }}</p>
+      <p><strong>今後期待すること、改善してほしいこと：</strong>{{ record["今後期待すること、改善してほしいこと"] }}</p>
     </div>
   {% endfor %}
 </div>

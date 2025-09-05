@@ -152,7 +152,7 @@ def event_detail(event_name):
         # 学籍番号とイベント名で絞り込み＋日付整形
         filtered = []
         for row in all_data:
-            if row.get("学籍番号") == student_id and row.get("元シート名") == event_name:
+            if row.get("学籍番号") == student_id and row.get("イベント名") == event_name:
                 row["参加日時"] = format_date_only(row.get("参加日時", ""))
                 filtered.append(row)
 
@@ -231,3 +231,4 @@ def survey_history():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000)) 
     app.run(debug=True, host='0.0.0.0', port=port)
+
