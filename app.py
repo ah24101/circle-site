@@ -69,7 +69,7 @@ def login():
 
         if email in users and users[email] == password:
             session['user'] = email
-            return redirect(url_for('index'))
+            return redirect(url_for('mypage'))
         else:
             return "ログインに失敗しました。メールアドレスかパスワードが違います。"
     return render_template('login.html')
@@ -165,9 +165,8 @@ def event_detail(event_name):
 
 @app.route('/')
 def index():
-    if 'user' not in session:
-        return redirect(url_for('login'))
-    return render_template('index.html')
+    return redirect(url_for('mypage'))
+
 
 
 @app.route('/logout')
